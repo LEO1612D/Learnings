@@ -4,7 +4,7 @@
   "description": "Simple Image tool to convert image to PDF",
   "main": "index.js",
   "scripts": {
-    "start": "node index.js"
+    "start": "node --watch index.js"
   },
   "author": "",
   "license": "ISC",
