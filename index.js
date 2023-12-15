@@ -7,43 +7,30 @@ const port = 3000;
 
 // Create the server
 const server = http.createServer((req, res) => {
-  // Set the response HTTP header with a status code of 200 (OK) and content type
-  res.statusCode = 200;
-  res.setHeader('Content-Type', 'text/html');
-  
-  // Simple text reading
-//   // Send a response back to the client
-//   res.end('Hello, this is your Node.js server!');
 
-    // Read File
+    if(req.url === '/text') {
+        res.writeHead(200, {
+            'Content-Type': 'text/plain'
+        });
 
-    fs.readFile('./assets/sample_png.png', (err, imageData) => {
-        if(err) {
-            res.statusCode = 404;
-            res.end("Image Not Found!!");
-        }
-        else {
+        res.end("Hello This is Just sample Text");
+    }
 
-            // Send Html Content
-                  // Sending HTML content with an image tag referencing the image file
-      const htmlContent = `
-      <html>
-        <body>
-          <h1>Hello, this is text</h1>
-          <img src="data:image/png;base64,${Buffer.from(imageData).toString('base64')}"/>
-        </body>
-      </html>
-    `;
-    res.end(htmlContent);
+    else if(req.url === '/image') {
+        res.writeHead(200, {
+            'Content-Type': 'text/plain'
+        });
 
+        fs.createReadStream('./assets/sample_png.png').pipe(res);
+    } 
 
-
-
-
-            // Send file only ----
-            //res.end(imageData);
-        }
-    });
+    else {
+        res.writeHead(404, {
+            'Content-Type': 'text/plain'
+        });
+        res.end("Page Not Found");
+    }
+ 
 
 });
 
