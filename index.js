@@ -1,4 +1,5 @@
 const http = require('http');
+const fs = require('fs');
 
 // Define the hostname and port number
 const hostname = '127.0.0.1';
@@ -10,8 +11,22 @@ const server = http.createServer((req, res) => {
   res.statusCode = 200;
   res.setHeader('Content-Type', 'text/plain');
   
-  // Send a response back to the client
-  res.end('Hello, this is your Node.js server!');
+  // Simple text reading
+//   // Send a response back to the client
+//   res.end('Hello, this is your Node.js server!');
+
+    // Read File
+
+    fs.readFile('./assets/sample_png.png', (err, data) => {
+        if(err) {
+            res.statusCode = 404;
+            res.end("Image Not Found!!");
+        }
+        else {
+            res.end(data);
+        }
+    });
+
 });
 
 // Start the server
