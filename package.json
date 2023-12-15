@@ -1,0 +1,14 @@
+{
+  "name": "image-tool",
+  "version": "1.0.0",
+  "description": "Simple Image tool to convert image to PDF",
+  "main": "index.js",
+  "scripts": {
+    "start": "node index.js"
+  },
+  "author": "",
+  "license": "ISC",
+  "dependencies": {
+    "sharp": "^0.33.0"
+  }
+}
